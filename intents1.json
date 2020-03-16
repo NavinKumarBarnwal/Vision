@@ -1,0 +1,68 @@
+{"intents": [
+    {"tag": "tshirt",
+     "patterns": ["tshirts", "t-shirt", "tshirt","round neck tshirt","v neck tshirt","good tshirt","I want tshirt","I need t-shirt"],
+     "responses": ["tshirt"],
+     "context_set": ""
+    },
+    {"tag": "shirt",
+     "patterns": ["shirt","sirt", "full shirt", "collar","collar shirts"],
+     "responses": ["shirt"],
+     "context_set": ""
+    },
+    {"tag": "trousers",
+     "patterns": ["trousers", "good trousers"],
+     "responses": [ "trouser"],
+     "context_set": ""
+    },
+    {"tag": "sweatshirt",
+     "patterns": ["sweaty","sweat shirt" ,"sweatshirt","sweater","sweat absorber" ],
+     "responses": ["sweatshirt"],
+     "context_set": ""
+    },
+    {"tag": "jeans",
+     "patterns": ["jeans","jean","jeans pant", "pant"],
+     "responses": ["jeans"],
+     "context_set": ""
+    },
+    {"tag": "shrug",
+     "patterns": ["shrug", "shrugs"],
+     "responses": ["shrug"],
+     "context_set": ""
+    },
+    {"tag": "jacket",
+        "patterns": ["jackets", "cold resistance"],
+        "responses": ["jacket"],
+        "context_set": ""
+    },
+    {"tag": "kurti",
+        "patterns": ["kurti","kurtee","indian kutris"],
+        "responses": ["kurti"],
+        "context_set": ""
+    },
+    {"tag": "shorts",
+        "patterns": ["short","shorts","half pants"],
+        "responses": ["shorts"],
+        "context_set": ""
+    },
+    {"tag": "men",
+        "patterns": ["man","mens","men","men's","man's","gents","guy","guys"],
+        "responses": ["men"],
+        "context_set": ""
+    },
+    {"tag": "women",
+        "patterns": ["women","lady","ladies","woman"],
+        "responses": ["women"],
+        "context_set": ""
+    },
+    {"tag": "girl",
+        "patterns": ["girl child","girl children","girls","baby"],
+        "responses": ["girl"],
+        "context_set": ""
+    },
+    {"tag": "boy",
+        "patterns": ["boy child","kids","kid","boy children","boys"],
+        "responses": ["boys"],
+        "context_set": ""
+    }
+]
+}
