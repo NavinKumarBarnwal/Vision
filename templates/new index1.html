@@ -1,0 +1,1047 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vision</title>
+
+    <!- Google Font ->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!- Css Styles ->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh'}" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+{% load static %}
+    <!-- Page Preloder --> 
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+  <!--Chatbot-->
+  <div class="back" style="background-color:rgb(69, 223, 223)">
+    <div>
+      <button class="open-button" onclick="openForm()" style="background-color: #0309a8;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: fixed;
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+      z-index:100;">Vision bot</button>
+    </div> 
+   
+
+    <div class="chat-popup" id="myForm" style="display: none;
+             position: fixed;
+             bottom:450px;
+             right: 28px;
+             width:280px;
+             z-index:9;
+             background-color:rgb(69, 223, 223);
+             border:10px solid rgb(69, 223, 223);
+             border-radius:5px;">
+            <!--<p class="msg-header" style="bottom:500px; 
+            right:30px; height:150px; 
+            width:280px;text-align:centre;
+            ">-->
+
+            <h6><b>Vision Bot</b></h6>
+            <h6>Active Now</h6>
+
+<!--<div class="header-icons">
+<i class="fa fa-phone"></i>
+<i class="fa fa-video-camera"></i>
+<i class="fa fa-info-circle"></i>
+</div>--> 
+{% if user.is_authenticated %}    
+         <div  class="chat-title" id="chatLog" style="background-color:rgb(244, 252, 244);
+      color:black;
+      padding:10px 10px;
+      border:thick solid rgb(69, 223, 223);
+      cursor:pointer;
+      opacity: 1;
+      position: fixed;
+      bottom: 160px;
+      right: 28px;
+      width: 280px; z-index:150;
+      overflow-y:auto;
+      overflow-x:hidden;
+      height:295px;">
+      <b>Vision Bot: </b>Hi {{user.username}}! I am Vision Bot.<br>
+         </div>
+         <div class="form-container" style="position: fixed;
+      bottom:100px;
+      right:28px;
+      height:65px;
+      width:280px;
+      padding: 10px 10px;
+      border-radius:7px;
+      background-color:rgb(62,223,223); z-index:150; border-radius:7px">
+            <div>   
+
+            <input  placeholder="Type msg & press enter" id="userBox" style="float:left; padding: 5px 5px;justify-content:space-between;width:200px; border-radius:5px;" type="text" onkeydown="if (event.keyCode == 13) {talk(); updateScroll()}" >
+            <span><i onclick="record()" class="fa fa-microphone" style="background-color: #555;
+                color: white;
+                padding: 11px 11px;
+                border: none;
+                cursor: pointer;
+                opacity: 1;
+                position: fixed;
+                right: 60px;
+                z-index:300;border-radius:5px;"></i></span>
+             
+     <!--<form action="/action_page.php" method="post" class="form-container"-->
+        
+            </div>                     <!--<label for="msg"><b>Message</b></label>-->
+             
+             <!--<button onclick="record()"><i class="fa fa-microphone" style="font-size:24px;float:right;"></i></button>-->
+             
+         </div>
+         <i type="button" onclick="closeForm()" class="fa fa-close" style="background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 1;
+            position: fixed;
+            bottom: 477px;
+            right: 28px;
+            width: 50px;
+            z-index:300;"></i>
+  
+
+      {% else %}
+      <div>
+      <p class="chat-title" id="chatLog" style="background-color:rgb(244, 252, 248);
+      color:black;
+      padding:10px 10px;
+      border:thick solid rgb(69, 223, 223);
+      cursor:pointer;
+      opacity: 1;
+      position: fixed;
+      bottom: 59px;
+      right: 28px;
+      width: 280px; z-index:150;
+      overflow-y:auto;
+      overflow-x:hidden;
+      height:500px;
+      border-radius:7px;">
+      <b>Vision Bot:</b> Please Login to Conversate.<br></p>
+      
+      
+      </div>
+      <i type="button" onclick="closeForm()" class="fa fa-close" style="background-color: #555;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 1;
+      position: fixed;
+      bottom: 527px;
+      right: 28px;
+      width: 50px;
+      z-index:300;"></i>
+         {% endif %}
+         
+        </div>
+    </div>       
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="ht-left">
+                    <div class="mail-service">
+                        <i class=" fa fa-envelope"></i>
+                        hello@gmail.com
+                    </div>
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                        +188888
+                    </div>
+                </div>
+                <div class="ht-right" >
+                    {% if not user.is_authenticated %}
+                        <a href="accounts/reg" class="login-panel" ><i class="fa fa-user" style="padding-right:30px;"> Register</i></a>
+                        <a href="accounts/log" class="login-panel" ><i class="fa fa-user" style="padding-right:30px ;"> Login</i></a>
+                    {% else %}
+                        <h3 class="login-panel"><b>Hi, {{user.username}} !</b></h3>
+                        <a href="accounts/logout" class="login-panel"><i class="fa fa-user"> Log Out</i></a>
+                    {% endif %}
+                    <div class="lan-selector">
+                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
+                            <option value='yt' data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag yt"
+                                data-title="English">English</option>
+                            <option value='yu' data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag yu"
+                                data-title="Bangladesh">Indian </option>
+                        </select>
+                    </div>
+                    <div class="top-social">
+                        <a href="#"><i class="ti-facebook"></i></a>
+                        <a href="#"><i class="ti-twitter-alt"></i></a>
+                        <a href="#"><i class="ti-linkedin"></i></a>
+                        <a href="#"><i class="ti-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        {% for msg in messages %}
+            <marquee  scrollmount="25" style="color:rgb(77, 50, 50); background-color:rgb(69, 223, 223); font-size:20px;">
+            <b>{{msg}}</b>
+            </marquee>
+        {% endfor %}
+        
+
+        
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="./">
+                               
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+                            <button type="button" class="category-btn">All Categories</button>
+                            <div class="input-group">
+                                <form action="search">
+                                    <input type="text" placeholder="What do you need?" name="usinput">
+                                    <i type="submit" class="fa fa-search" style="font-size: 16px;
+                                    color: #ffffff;
+                                    position: absolute;
+                                    right: -10px;
+                                    top: -1px;
+                                    border: 1px solid rgb(69, 223, 223);
+                                    background: rgb(69, 223, 223);
+                                    padding: 12px 16px 12px;
+                                    cursor: pointer;height:50px;"></i>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="nav-item">
+            <div class="container">
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="./">Home</a></li>
+                        
+                        <li><a href="shopping-cart/">Shopping Cart</a>
+                        </li>
+                        <li><a href="check-out/">Check Out</a></li>
+                        <li><a href="faq/">FAQ</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="dropdown">
+                                
+                                <li><a href="shopping-cart/">Shopping Cart</a></li>
+                                <li><a href="check-out/">Checkout</a></li>
+                                <li><a href="faq/">FAQ</a></li>
+                                {% if user.is_authenticated %}
+                                    <li><a href="accounts/logout">Logout</a></li>
+                                {% else %}
+                                    <li><a href="accounts/reg">Register</a></li>
+                                    <li><a href="accounts/log">Login</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+            <div class="single-hero-items set-bg" data-setbg="{% static 'img/hero-1.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Awesome Prices and Discounts</span>
+                            <h1>Shop Now</h1>
+                            <p>Good Quality Products</p>
+                            
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="{% static 'img/hero-2.jpg'%}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Awesome Prices and Discounts</span>
+                            <h1>Shop Now</h1>
+                            <p>Good Quality Products</p>
+                            
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Banner Section Begin -->
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="{% static 'img/banner-1.jpg' %}" alt="">
+                        <div class="inner-text">
+                            <h4>Men’s</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="{% static 'img/banner-2.jpg' %}" alt="">
+                        <div class="inner-text">
+                            <h4>Women’s</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="{% static 'img/banner-3.jpg' %}" alt="">
+                        <div class="inner-text">
+                            <h4>Kid’s</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Section End -->
+
+    <!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="{% static 'img/products/women-large.jpg' %}">
+                        <h2>Women’s</h2>
+                        <a href="#">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active">Clothings</li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{product.11.image_url}}" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{product.11.tag}}</div>
+                                <a href="#">
+                                    <h5>{{product.11.name}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    Rs.{{product.11.price}}
+                                    <span>Rs.499</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {% for i in product|slice:"12:20" %}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{i.image_url}}" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{i.tag}}</div>
+                                <a href="#">
+                                    <h5>{{i.name}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    Rs.{{i.price}}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Women Banner Section End -->
+    
+    <!-- Kid Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="{% static 'img/banner-3.jpg' %}">
+                        <h2>Kids Wear</h2>
+                        <a href="#">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active">Clothings</li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{product.21.image_url}}" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{product.21.tag}}</div>
+                                <a href="#">
+                                    <h5>{{product.21.name}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    Rs.{{product.21.price}}
+                                    <span>Rs.499</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {% for i in product|slice:"22:30" %}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{i.image_url}}" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{i.tag}}</div>
+                                <a href="#">
+                                    <h5>{{i.name}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    Rs.{{i.price}}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Kids Banner Section End -->
+
+    <!-- Deal Of The Week Section Begin-->
+    <section class="deal-of-week set-bg spad" data-setbg="{% static 'img/time-bg.jpg' %}">
+        <div class="container">
+            <div class="col-lg-6 text-center">
+                <div class="section-title">
+                    <h2>Deal Of The Week</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br /> do ipsum dolor sit amet,
+                        consectetur adipisicing elit </p>
+                    <div class="product-price">
+                        Rs.35.00
+                        <span>/ HanBag</span>
+                    </div>
+                </div>
+                <div class="countdown-timer" id="countdown">
+                    <div class="cd-item">
+                        <span>56</span>
+                        <p>Days</p>
+                    </div>
+                    <div class="cd-item">
+                        <span>12</span>
+                        <p>Hrs</p>
+                    </div>
+                    <div class="cd-item">
+                        <span>40</span>
+                        <p>Mins</p>
+                    </div>
+                    <div class="cd-item">
+                        <span>52</span>
+                        <p>Secs</p>
+                    </div>
+                </div>
+                <a href="#" class="primary-btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+    <!-- Deal Of The Week Section End -->
+
+    <!-- Man Banner Section Begin -->
+    <section class="man-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active">Clothings</li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{product.1.image_url}}" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{product.1.tag}}</div>
+                                <a href="#">
+                                    <h5>{{product.1.name}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    Rs.{{product.1.price}}
+                                    <span>Rs.999</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {% for i in product|slice:"2:10" %}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{i.image_url}}" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{i.tag}}</div>
+                                <a href="#">
+                                    <h5>{{i.name}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    Rs.{{i.price}}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="product-large set-bg m-large" data-setbg="{% static 'img/products/man-large.jpg' %}">
+                        <h2>Men’s</h2>
+                        <a href="#">Discover More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Man Banner Section End -->
+
+    <!-- Instagram Section Begin -->
+    <div class="instagram-photo">
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-1.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">My Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-2.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">My Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-3.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">My Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-4.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">My Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-5.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">My Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-6.jpg' %}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">My Collection</a></h5>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram Section End -->
+
+    <!-- Latest Blog Section Begin -->
+    <section class="latest-blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>From The Blog</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-blog">
+                        <img src="{% static 'img/latest-1.jpg' %}" alt="">
+                        <div class="latest-text">
+                            <div class="tag-list">
+                                <div class="tag-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    May 4,2019
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    5
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h4>The Best Street Style From London Fashion Week</h4>
+                            </a>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-blog">
+                        <img src="{% static 'img/latest-2.jpg' %}" alt="">
+                        <div class="latest-text">
+                            <div class="tag-list">
+                                <div class="tag-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    May 4,2019
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    5
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
+                            </a>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-blog">
+                        <img src="{% static 'img/latest-3.jpg' %}" alt="">
+                        <div class="latest-text">
+                            <div class="tag-list">
+                                <div class="tag-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    May 4,2019
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    5
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
+                            </a>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="benefit-items">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="{% static 'img/icon-1.png' %}" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Free Shipping</h6>
+                                <p>For all order over 99$</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="{% static 'img/icon-2.png' %}" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Delivery On Time</h6>
+                                <p>If good have prolems</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="{% static 'img/icon-1.png' %}" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Secure Payment</h6>
+                                <p>100% secure payment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Latest Blog Section End -->
+
+    <!-- Partner Logo Section Begin -->
+    <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-1.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-2.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-3.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-4.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-5.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Partner Logo Section End -->
+     
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <a href="#"></a>
+                        </div>
+                        <ul>
+                            <li>Address: NIT Rourkela</li>
+                            <li>Phone: +1188888</li>
+                            <li>Email: hello@gmail.com</li>
+                        </ul>
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <div class="footer-widget">
+                        <h5>Information</h5>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-widget">
+                        <h5>My Account</h5>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Shopping Cart</a></li>
+                            <li><a href="#">Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="newslatter-item">
+                        <h5>Join Our Newsletter Now</h5>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Enter Your Mail">
+                            <button type="button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |<i aria-hidden="true"></i> by Vision
+
+                        </div>
+                        <div class="payment-pic">
+                            <img src="{% static 'img/payment-method.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+            var voiceList;//=document.querySelector('#voiceList');
+            var synth = window.speechSynthesis;
+            var voices = [];
+            PopulateVoices();
+            if(speechSynthesis !== undefined)
+            {
+                speechSynthesis.onvoiceschanged = PopulateVoices;
+            }
+            var toSpeak;
+            function record()
+            {
+                var recognition = new webkitSpeechRecognition();
+                recognition.lang = "en-IN";
+                //recognion.continuous=true;
+                //recognion.interimResults = true;
+                recognition.onresult = function(event)
+                {
+                    // console.log(event);
+                    document.getElementById('userBox').value = event.results[0][0].transcript;
+                    var user = document.getElementById("userBox").value;
+                    user = user.replace('card','cart');
+                    //document.getElementById("chatLog").innerHTML += user+"<br>";
+                    //document.getElementById("userBox").value = "";
+                    var url = '/send?name='+user;
+                    var req = new XMLHttpRequest();
+                    var t;
+                    var User="{{user.username}}";
+                    User = User.charAt(0).toUpperCase() + User.substring(1);
+                    User=User.bold()+": ".bold()
+                    var Visi="Vision Bot: ".bold()
+                    req.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        t=req.responseText;
+                        
+                        if (t.charAt(0)=="h" && t.charAt(1)=="t" && t.charAt(2)=="t" && t.charAt(3)=="p") {
+                            document.getElementById("userBox").value = "";
+                            document.getElementById("chatLog").innerHTML += User+user+"<br>";
+                            //document.write(t);
+                            document.getElementById("chatLog").innerHTML += Visi+'<a href=" '+t+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";
+                            toSpeak = new SpeechSynthesisUtterance("Click here for Search Query Results/View your Cart");
+                        }
+                        else{
+                            document.getElementById("userBox").value = "";
+                            document.getElementById("chatLog").innerHTML += User+user+"<br>";
+                            document.getElementById("chatLog").innerHTML += Visi+t+"<br>";
+                            toSpeak = new SpeechSynthesisUtterance(t);
+                            
+                        }
+                        $(document).ready(function(){
+                            var $text= $('#chatLog');
+                            $text.scrollTop($text[0].scrollHeight);
+                        })
+                        var selectedVoiceName = voiceList;//.selectedOptions[0].getAttribute('data-name');
+                    voices.forEach((voice)=>
+                    {
+                        if(voice.name === selectedVoiceName)
+                        {
+                            toSpeak.voice = voice;
+                        }
+                    });
+                    synth.speak(toSpeak);
+                    
+                    }
+                    };
+                    req.open("GET", url, true);
+                    req.send();
+                            /*
+                    if(user in know)
+                    {
+                        toSpeak = new SpeechSynthesisUtterance(know[user]);
+                        document.getElementById("chatLog").innerHTML += know[user]+"<br>";
+                    }
+                    else
+                    {
+                        toSpeak = new SpeechSynthesisUtterance("I don't understand");
+                        document.getElementById("chatLog").innerHTML += "I don't understand...<br>";
+                    }
+                    */
+                    
+                }
+                recognition.start();
+
+            }
+            
+            function PopulateVoices()
+            {
+                voices = synth.getVoices();
+                var derangedVoice = voices.filter(function (voice) {
+                    return voice.name == 'Deranged';
+                })[0];
+                voiceList.innerHTML = '';
+                voices.forEach((voice)=>{
+                    var listItem = document.createElement('option');
+                    listItem.textContent = voice.name;
+                    listItem.setAttribute('data-lang', voice.lang);
+                    listItem.setAttribute('data-name', voice.name);
+                    voiceList.appendChild(listItem);
+                });
+                voiceList = derangedVoice;
+            }
+        document.getElementById("chatlog")=localStorage.getItem('key');
+        function talk() {
+            var user = document.getElementById("userBox").value;
+            var url = '/send?name='+user;
+            var req = new XMLHttpRequest();
+            var t;
+            var User="{{user.username}}";
+            User = User.charAt(0).toUpperCase() + User.substring(1);
+            User=User.bold()+": ".bold()
+            //var User="User: ".bold()
+            var Visi="Vision Bot: ".bold()
+            req.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                t=req.responseText;
+                
+                if (t.charAt(0)=="h" && t.charAt(1)=="t" && t.charAt(2)=="t" && t.charAt(3)=="p") {
+                    document.getElementById("userBox").value = "";
+                    document.getElementById("chatLog").innerHTML += User+user+"<br>";
+                    //document.write(t);
+                    document.getElementById("chatLog").innerHTML += Visi+'<a href=" '+t+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";
+                }
+                else{
+                    document.getElementById("userBox").value = "";
+                    document.getElementById("chatLog").innerHTML += User+user+"<br>";
+                    document.getElementById("chatLog").innerHTML += Visi+t+"<br>";
+                }
+                $(document).ready(function(){
+                    var $text= $('#chatLog');
+                    $text.scrollTop($text[0].scrollHeight);
+                })
+            }
+            };
+            req.open("GET", url, true);
+            req.send();
+        } 
+        localStorage.setItem("key",getElementById("chatlog").value);
+    </script>
+    <!-- Js Plugins -->
+    <script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+    <script src="{% static 'js/jquery.dd.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+<script>
+    function updateScroll(){
+       var c=ducument.getElementById('chat1');
+       var xH= c.scrollHeight;
+       c.scrollTo(0,xH);
+    }
+</script>
+
+</body>
+</html>
+

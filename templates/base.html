@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+{% load static %}
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vision</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh'}" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   </head>
+
+<body>
+    <!-- Page Preloder --> 
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <!--Chatbot-->
+  <div class="back" style="background-color:rgb(69, 223, 223)">
+    <div id="chat1">
+      <button class="open-button" onclick="openForm()" style="background-color: #0309a8;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: fixed;
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+      z-index:100;">Vision bot</button>
+    </div> 
+   
+
+    <div class="chat-popup" id="myForm" style="display: none;
+             position: fixed;
+             bottom:450px;
+             right: 28px;
+             width:280px;
+             z-index:9;
+             background-color:rgb(69, 223, 223);
+             border:10px solid rgb(69, 223, 223);
+             border-radius:5px;">
+            <!--<p class="msg-header" style="bottom:500px; 
+            right:30px; height:150px; 
+            width:280px;text-align:centre;
+            ">-->
+
+            <h6><b>Vision Bot</b></h6>
+            <h6>Active Now</h6>
+
+<!--<div class="header-icons">
+<i class="fa fa-phone"></i>
+<i class="fa fa-video-camera"></i>
+<i class="fa fa-info-circle"></i>
+</div>--> 
+{% if user.is_authenticated %}    
+         <div  class="chat-title" id="chatLog" style="background-color:rgb(244, 252, 244);
+      color:black;
+      padding:10px 10px;
+      border:thick solid rgb(69, 223, 223);
+      cursor:pointer;
+      opacity: 1;
+      position: fixed;
+      bottom: 160px;
+      right: 28px;
+      width: 280px; z-index:150;
+      overflow-y:auto;
+      overflow-x:hidden;
+      height:295px;">
+      <b>Vision Bot: </b>Hi {{user.username}}! I am Vision Bot.<br>
+         </div>
+         <div class="form-container" style="position: fixed;
+      bottom:100px;
+      right:28px;
+      height:65px;
+      width:280px;
+      padding: 10px 10px;
+      border-radius:7px;
+      background-color:rgb(62,223,223); z-index:150; border-radius:7px">
+            <div>   
+
+            <input  placeholder="Type msg & press enter" id="userBox" style="float:left; padding: 5px 5px;justify-content:space-between;width:200px; border-radius:5px;" type="text" onkeydown="if (event.keyCode == 13) {talk(); updateScroll()}" >
+            <span><i onclick="record()" class="fa fa-microphone" style="background-color: #555;
+                color: white;
+                padding: 11px 11px;
+                border: none;
+                cursor: pointer;
+                opacity: 1;
+                position: fixed;
+                right: 60px;
+                z-index:300;border-radius:5px;"></i></span>
+             
+     <!--<form action="/action_page.php" method="post" class="form-container"-->
+        
+            </div>                     <!--<label for="msg"><b>Message</b></label>-->
+             
+             <!--<button onclick="record()"><i class="fa fa-microphone" style="font-size:24px;float:right;"></i></button>-->
+             
+         </div>
+         
+         <i type="button" onclick="closeForm()" class="fa fa-close" style="background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 1;
+            position: fixed;
+            bottom: 477px;
+            right: 28px;
+            width: 50px;
+            z-index:300;"></i>
+
+      {% else %}
+      <div>
+      <p class="chat-title" id="chatLog" style="background-color:rgb(244, 252, 248);
+      color:black;
+      padding:10px 10px;
+      border:thick solid rgb(69, 223, 223);
+      cursor:pointer;
+      opacity: 1;
+      position: fixed;
+      bottom: 59px;
+      right: 28px;
+      width: 280px; z-index:150;
+      overflow-y:auto;
+      overflow-x:hidden;
+      height:500px;
+      border-radius:7px;">
+      <b>Vision Bot:</b> Please Login to Conversate.<br></p>
+      
+         </div>
+         <i type="button" onclick="closeForm()" class="fa fa-close" style="background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 1;
+            position: fixed;
+            bottom: 527px;
+            right: 28px;
+            width: 50px;
+            z-index:300;"></i>
+         {% endif %}
+         
+        </div>
+    </div>       
+
+    
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    hello@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +188888
+                </div>
+            </div>
+            <div class="ht-right">
+                {% if not user.is_authenticated %}
+                    <a href="/" class="login-panel"><i class="fa fa-user"> Register</i></a>
+                    <a href="/" class="login-panel"><i class="fa fa-user"> Login</i></a>
+                {% else %}
+                    <h3 class="login-panel">Hi, {{user.username}}</h3>
+                    <a href="/" class="login-panel"><i class="fa fa-user"> Log Out</i></a>
+                {% endif %}
+                <div class="lan-selector">
+                    <select class="language_drop" name="countries" id="countries" style="width:300px;">
+                        <option value='yt' data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag yt"
+                            data-title="English">English</option>
+                        <option value='yu' data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag yu"
+                            data-title="Indian">Indian </option>
+                    </select>
+                </div>
+                <div class="top-social">
+                    <a href="#"><i class="ti-facebook"></i></a>
+                    <a href="#"><i class="ti-twitter-alt"></i></a>
+                    <a href="#"><i class="ti-linkedin"></i></a>
+                    <a href="#"><i class="ti-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+<!--
+    
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="./">
+                           
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7 col-md-7">
+                    <div class="advanced-search">
+                        <button type="button" class="category-btn">All Categories</button>
+                        <div class="input-group">
+                            <form action="search">
+                                <input type="text" placeholder="What do you need?" name="usinput">
+                                <button type="button"><input type="submit"></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 text-right col-md-3">
+                    <ul class="nav-right">
+                        <li class="heart-icon">
+                            <a href="#">
+                                <i class="icon_heart_alt"></i>
+                                <span>1</span>
+                            </a>
+                        </li>
+                        <li class="cart-icon">
+                            <a href="#">
+                                <i class="icon_bag_alt"></i>
+                                <span>3</span>
+                            </a>
+                            <div class="cart-hover">
+                                <div class="select-items">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="si-pic"><img src="{% static 'img/select-product-1.jpg' %}" alt=""></td>
+                                                <td class="si-text">
+                                                    <div class="product-selected">
+                                                        <p>Rs.60.00 x 1</p>
+                                                        <h6>Kabino Bedside Table</h6>
+                                                    </div>
+                                                </td>
+                                                <td class="si-close">
+                                                    <i class="ti-close"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="si-pic"><img src="{% static 'img/select-product-2.jpg' %}" alt=""></td>
+                                                <td class="si-text">
+                                                    <div class="product-selected">
+                                                        <p>Rs.60.00 x 1</p>
+                                                        <h6>Kabino Bedside Table</h6>
+                                                    </div>
+                                                </td>
+                                                <td class="si-close">
+                                                    <i class="ti-close"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="select-total">
+                                    <span>total:</span>
+                                    <h5>Rs.120.00</h5>
+                                </div>
+                                <div class="select-button">
+                                    <a href="#" class="primary-btn view-card">VIEW CART</a>
+                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cart-price">Rs.150.00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    <div class="nav-item">
+        <div class="container">
+            <!--
+            <div class="nav-depart">
+                <div class="depart-btn">
+                    <i class="ti-menu"></i>
+                    <span>All departments</span>
+                    <ul class="depart-hover">
+                        <li ><a href="#">Women’s Clothing</a></li>
+                        <li><a href="#">Men’s Clothing</a></li>
+                        <li><a href="#">Footwear</a></li>
+                        <li><a href="#">Kid's Clothing</a></li>
+                        <li><a href="#">Brand Fashion</a></li>
+                        <li><a href="#">Accessories/Shoes</a></li>
+                        <li><a href="#">Luxury Brands</a></li>
+                        <li><a href="#">Brand Outdoor Apparel</a></li>
+                    </ul>
+                </div>
+            </div>
+            -->
+            <nav class="nav-menu mobile-menu">
+                <ul>
+                   <li> <h3 style="color:rgb(69, 223, 223)";>*************************************************************************************</h3></li>
+                    <!--
+                    <li><a href="shop/">Shop</a></li>
+                    <li><a href="#">Collection</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Men's</a></li>
+                            <li><a href="#">Women's</a></li>
+                            <li><a href="#">Kid's</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog/">Blog</a></li>
+                    <li><a href="contact/">Contact</a></li>
+                    <li><a href="#">Pages</a>
+                        <ul class="dropdown">
+                            <li><a href="blog-details/">Blog Details</a></li>
+                            <li><a href="shopping-cart/">Shopping Cart</a></li>
+                            <li><a href="check-out/">Checkout</a></li>
+                            <li><a href="faq/">Faq</a></li>
+                            {% if user.is_authenticated %}
+                                <li><a href="accounts/logout">Logout</a></li>
+                            {% else %}
+                                <li><a href="accounts/reg">Register</a></li>
+                                <li><a href="accounts/log">Login</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </div>
+</header>
+<!-- Header End -->
+    {% block body %}
+    {% endblock %}
+
+<!-- Partner Logo Section Begin -->
+<div class="partner-logo">
+    <div class="container">
+        <div class="logo-carousel owl-carousel">
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-1.png' %}" alt="">
+                </div>
+            </div>
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-2.png' %}" alt="">
+                </div>
+            </div>
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-3.png' %}" alt="">
+                </div>
+            </div>
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-4.png' %}" alt="">
+                </div>
+            </div>
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-5.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Partner Logo Section End -->
+
+    
+
+<!-- Footer Section Begin -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <a href="#"></a>
+                    </div>
+                    <ul>
+                        <li>Address: NIT Rourkela</li>
+                        <li>Phone: +1188888</li>
+                        <li>Email: hello@gmail.com</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 offset-lg-1">
+                <div class="footer-widget">
+                    <h5>Information</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--
+            <div class="col-lg-4">
+                <div class="newslatter-item">
+                    <h5>Join Our Newsletter Now</h5>
+                    <p>Get E-mail updates about our latest shop and special offers.</p>
+                    <form action="#" class="subscribe-form">
+                        <input type="text" placeholder="Enter Your Mail">
+                        <button type="button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+    <div class="copyright-reserved">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |<i aria-hidden="true"></i> by Vision
+
+                    </div>
+                    <div class="payment-pic">
+                        <img src="{% static 'img/payment-method.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+    var voiceList;//=document.querySelector('#voiceList');
+    var synth = window.speechSynthesis;
+    var voices = [];
+    PopulateVoices();
+    if(speechSynthesis !== undefined)
+    {
+        speechSynthesis.onvoiceschanged = PopulateVoices;
+    }
+    var toSpeak;
+    function record()
+    {
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-IN";
+        //recognion.continuous=true;
+        //recognion.interimResults = true;
+        recognition.onresult = function(event)
+        {
+            // console.log(event);
+            document.getElementById('userBox').value = event.results[0][0].transcript;
+            var user = document.getElementById("userBox").value;
+            user = user.replace('card','cart');
+            //document.getElementById("chatLog").innerHTML += user+"<br>";
+            //document.getElementById("userBox").value = "";
+            var url = '/send?name='+user;
+            var req = new XMLHttpRequest();
+            var t;
+            var User="{{user.username}}";
+            User = User.charAt(0).toUpperCase() + User.substring(1);
+            User=User.bold()+": ".bold()
+            var Visi="Vision Bot: ".bold()
+            req.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                t=req.responseText;
+                
+                if (t.charAt(0)=="h" && t.charAt(1)=="t" && t.charAt(2)=="t" && t.charAt(3)=="p") {
+                    document.getElementById("userBox").value = "";
+                    document.getElementById("chatLog").innerHTML += User+user+"<br>";
+                    //document.write(t);
+                    document.getElementById("chatLog").innerHTML += Visi+'<a href=" '+t+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";
+                    toSpeak = new SpeechSynthesisUtterance("Click here for Search Query Results/View your Cart");
+                }
+                else{
+                    document.getElementById("userBox").value = "";
+                    document.getElementById("chatLog").innerHTML += User+user+"<br>";
+                    document.getElementById("chatLog").innerHTML += Visi+t+"<br>";
+                    toSpeak = new SpeechSynthesisUtterance(t);
+                    
+                }
+                $(document).ready(function(){
+                    var $text= $('#chatLog');
+                    $text.scrollTop($text[0].scrollHeight);
+                })
+                var selectedVoiceName = voiceList;//.selectedOptions[0].getAttribute('data-name');
+            voices.forEach((voice)=>
+            {
+                if(voice.name === selectedVoiceName)
+                {
+                    toSpeak.voice = voice;
+                }
+            });
+            synth.speak(toSpeak);
+            
+            }
+            };
+            req.open("GET", url, true);
+            req.send();
+                    /*
+            if(user in know)
+            {
+                toSpeak = new SpeechSynthesisUtterance(know[user]);
+                document.getElementById("chatLog").innerHTML += know[user]+"<br>";
+            }
+            else
+            {
+                toSpeak = new SpeechSynthesisUtterance("I don't understand");
+                document.getElementById("chatLog").innerHTML += "I don't understand...<br>";
+            }
+            */
+            
+        }
+        recognition.start();
+
+    }
+    
+    function PopulateVoices()
+    {
+        voices = synth.getVoices();
+        var derangedVoice = voices.filter(function (voice) {
+            return voice.name == 'Deranged';
+        })[0];
+        voiceList.innerHTML = '';
+        voices.forEach((voice)=>{
+            var listItem = document.createElement('option');
+            listItem.textContent = voice.name;
+            listItem.setAttribute('data-lang', voice.lang);
+            listItem.setAttribute('data-name', voice.name);
+            voiceList.appendChild(listItem);
+        });
+        voiceList = derangedVoice;
+    }
+document.getElementById("chatlog")=localStorage.getItem('key');
+function talk() {
+    var user = document.getElementById("userBox").value;
+    var url = '/send?name='+user;
+    var req = new XMLHttpRequest();
+    var t;
+    var User="{{user.username}}";
+    User = User.charAt(0).toUpperCase() + User.substring(1);
+    User=User.bold()+": ".bold()
+    //var User="User: ".bold()
+    var Visi="Vision Bot: ".bold()
+    req.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        t=req.responseText;
+        
+        if (t.charAt(0)=="h" && t.charAt(1)=="t" && t.charAt(2)=="t" && t.charAt(3)=="p") {
+            document.getElementById("userBox").value = "";
+            document.getElementById("chatLog").innerHTML += User+user+"<br>";
+            //document.write(t);
+            document.getElementById("chatLog").innerHTML += Visi+'<a href=" '+t+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";
+        }
+        else{
+            document.getElementById("userBox").value = "";
+            document.getElementById("chatLog").innerHTML += User+user+"<br>";
+            document.getElementById("chatLog").innerHTML += Visi+t+"<br>";
+        }
+        $(document).ready(function(){
+            var $text= $('#chatLog');
+            $text.scrollTop($text[0].scrollHeight);
+        })
+    }
+    };
+    req.open("GET", url, true);
+    req.send();
+} 
+localStorage.setItem("key",getElementById("chatlog").value);
+</script>
+<!-- Js Plugins -->
+<script>
+function openForm() {
+document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+document.getElementById("myForm").style.display = "none";
+}
+</script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+<script src="{% static 'js/jquery.dd.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+
+
+</body>
+   </html>

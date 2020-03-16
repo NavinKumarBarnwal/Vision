@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+{% load static %}
+ 
+
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2>Search Results</h2>
+                    <div class="product-large set-bg" data-setbg="{% static 'img/cart.jpg' %}">
+                        
+                        
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active">Clothings</li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        
+                        {% for i in pro|slice:"0:" %}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{i.image_url}}" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{i.tag}}</div>
+                                <a href="#">
+                                    <h5>{{i.name}}</h5>
+                                </a>
+                                <a href="#">
+                                    <h5>Product ID: {{i.id}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    Rs.{{i.price}}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Women Banner Section End -->
+
+ 
+ {% endblock %}

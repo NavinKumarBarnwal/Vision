@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+{% load static %}
+    
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text product-more">
+                        <a href="/"><i class="fa fa-home"></i> Home</a>
+                        
+                        <span>Check Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="checkout-section spad">
+        <div class="container">
+            <div class="checkout-form">
+                <div class="row">
+                    <div class="col-lg-6">
+                        
+                        <h4>Billing Details</h4>
+                        <div class="row">
+                                <div class="col-lg-6">
+                                    Reciever Name: {{user.username}}
+                                <br>
+                                <br>
+                                    Address: {{user.first_name}}
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="place-order">
+                            <h4>Your Order</h4>
+                            <div class="order-total">
+                                <ul class="order-table">
+                                    <li>Product <span>Total</span></li>
+                                    {% for i in product|slice:"0:" %}
+                                    <li class="fw-normal">{{i.name}} <span>Rs. {{i.price}}</span></li>
+                                    {% endfor %}
+                                    <li class="total-price">Total <span>Rs. {{sum}}</span></li>
+                                </ul>
+                                <form action="delete">
+                                    <div class="order-btn">
+                                        <button type="submit" class="site-btn place-btn">Place Order</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+{% endblock %}
