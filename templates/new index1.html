@@ -88,36 +88,38 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    <form enctype="multipart/form-data" id="id_ajax_upload_form" method="POST" novalidate="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" />
-     </form>
     <!--<div class="w3-container">
-        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Upload Resumé</button>
+    -->
       
     <div id="id01" class="w3-modal">
           <div class="w3-modal-content">
             <div class="w3-container">
               <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-              <form action='chat2/' method="post" enctype="multipart/form-data" class="d">
-                {% csrf_token %}
-                <br>
-                <input type="file" name="myfile" accept="image/*" class ="c"><br><br>
-                <button type="submit">Upload</button>
-              </form>
-              
-              <p class="c"><strong class="b">Note:</strong> Only .pdf and .docx formats are acceptable.</p>
-              <p class="a"><a href="{% url 'home' %}">Return to home</a></p>
+                <form enctype="multipart/form-data" id="id_ajax_upload_form" method="POST" novalidate="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" />
+        </form>
+        
+            <!--  <p class="c"><strong class="b">Note:</strong> Only .pdf and .docx formats are acceptable.</p>
+              <p class="a"><a href="{% url 'home' %}">Return to home</a></p>-->
             </div>
           </div>
         </div>
-      </div>
-  Chatbot
+      <!--
+      <div id='id01' class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <form enctype="multipart/form-data" id="id_ajax_upload_form" method="POST" novalidate="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" />
+        </form>       
+        <p class="a"><a href="{% url 'home' %}">Return to home</a></p>
+        <p class="c"><strong class="b">Note:</strong> Only .pdf and .docx formats are acceptable.</p>
+        <p class="a"><a href="{% url 'home' %}">Return to home</a></p>-->
+  <!--    </div>
+   Chatbot -->
     
-    <button onclick="upload1()">Upload</button>
-    <input type="file" formmethod="post" onchange="load(event)" formenctype="multipart/form-data" name="myfile" id="myfil"><br><br>
-    -->
     <div class="back" style="background-color:rgb(69, 223, 223)">
     <div>
       <button class="open-button" onclick="openForm()" style="background-color: #0309a8;
@@ -186,17 +188,27 @@
             <input  placeholder="Type msg & press enter" id="userBox" style="float:left; padding: 5px 5px;justify-content:space-between;width:200px; border-radius:5px;" type="text" onkeydown="if (event.keyCode == 13) {talk(); updateScroll()}" >
             <span><i onclick="record()" class="fa fa-microphone" style="background-color: #555;
                 color: white;
-                padding: 11px 11px;
+                padding: 11px 10px;
                 border: none;
                 cursor: pointer;
                 opacity: 1;
                 position: fixed;
-                right: 60px;
+                right: 68px;
                 z-index:300;border-radius:5px;"></i></span>
             <!--<form action='upload/' method="post" enctype="multipart/form-data" class="d">
                 {% csrf_token %}
-                <br>-->
-                
+                <br>
+            <button onclick="document.getElementById('id_ajax_upload_form').style.display='block'" class="w3-button w3-black">Upload Resumé</button>-->
+                <span><i onclick="document.getElementById('id01').style.display='block'" class="fa fa-picture-o" style="background-color: #555;
+                    color: white;
+                    padding: 11px 9px;
+                    border: none;
+                    cursor: pointer;
+                    opacity: 1;
+                    position: fixed;
+                    right: 31px;
+                    z-index:300;border-radius:5px;"></i></span>
+                    
         
 
 
@@ -1139,7 +1151,7 @@
         document.getElementById("myForm").style.display = "none";
         }
     </script>
-    <script>
+    <!--<script>
         var load = function(event)
             {
                 //document.write("abcd");
@@ -1188,7 +1200,7 @@
                 var Visi="Vision Bot: ".bold();
                 document.getElementById('chatLog').innerHTML+=Visi+'<a href=" '+"{{yu}}"+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";;
             }*/
-    </script>
+    </script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script type="text/javascript">
     // form upload
