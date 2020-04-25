@@ -28,12 +28,77 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh'}" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
+   <style>
+    .w3-container {
+        margin:10px;
+        margin-top: 10%;
+        padding: 5px 30px;
+        color:cyan;
+        font-size: 20px;
+        border:cyan;
+        padding:0.05em 25px}
 
+    
+    .a{
+        font-size: 15px;
+        color: olivedrab;
+    }
+    .b{
+        color: #00FF00;
+        font-size: 20px;
+    }
+    .c{
+        color:#00FF00;
+        font-size: 19px;
+        padding: 5px;
+        margin: 30px;
+        border: 2px solid #00FF00;
+    }
+    .w3-modal{
+        z-index:3;
+        display:none;
+        padding-top:100px;
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background-color:rgba(0, 1, 0, 0.1);
+        
+    }
+    .w3-modal-content{
+        margin:auto;
+        background: black;
+        position:relative;
+        padding:0;
+        outline:0;
+        width:50%;
+        text-align: center;
+        border: 2px solid #00FF00;
+    }
+
+</style>
 <body>
     <!-- Page Preloder --> 
     <div id="preloder">
         <div class="loader"></div>
     </div>
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+              <form enctype="multipart/form-data" id="id_ajax_upload_form" method="POST" novalidate="">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" />
+      </form>
+      
+          <!--  <p class="c"><strong class="b">Note:</strong> Only .pdf and .docx formats are acceptable.</p>
+            <p class="a"><a href="{% url 'home' %}">Return to home</a></p>-->
+          </div>
+        </div>
+      </div>
     <!--Chatbot-->
   <div class="back" style="background-color:rgb(69, 223, 223)">
     <div id="chat1">
@@ -102,14 +167,23 @@
             <input  placeholder="Type msg & press enter" id="userBox" style="float:left; padding: 5px 5px;justify-content:space-between;width:200px; border-radius:5px;" type="text" onkeydown="if (event.keyCode == 13) {talk(); updateScroll()}" >
             <span><i onclick="record()" class="fa fa-microphone" style="background-color: #555;
                 color: white;
-                padding: 11px 11px;
+                padding: 11px 10px;
                 border: none;
                 cursor: pointer;
                 opacity: 1;
                 position: fixed;
-                right: 60px;
+                right: 68px;
                 z-index:300;border-radius:5px;"></i></span>
-             
+                <span><i onclick="document.getElementById('id01').style.display='block'" class="fa fa-picture-o" style="background-color: #555;
+                    color: white;
+                    padding: 11px 9px;
+                    border: none;
+                    cursor: pointer;
+                    opacity: 1;
+                    position: fixed;
+                    right: 31px;
+                    z-index:300;border-radius:5px;"></i></span>
+                 
      <!--<form action="/action_page.php" method="post" class="form-container"-->
         
             </div>                     <!--<label for="msg"><b>Message</b></label>-->
@@ -146,7 +220,7 @@
       overflow-x:hidden;
       height:500px;
       border-radius:7px;">
-      <b>Vision Bot:</b> Please Login to Conversate.<br></p>
+      <!--<b>Vision Bot:</b> Please Login to Conversate.<br>--></p>
       
          </div>
          <i type="button" onclick="closeForm()" class="fa fa-close" style="background-color: #555;
@@ -205,143 +279,13 @@
             </div>
         </div>
     </div>
-
-    
-<!--
-    
-    <div class="container">
-        <div class="inner-header">
-            <div class="row">
-                <div class="col-lg-2 col-md-2">
-                    <div class="logo">
-                        <a href="./">
-                           
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-7 col-md-7">
-                    <div class="advanced-search">
-                        <button type="button" class="category-btn">All Categories</button>
-                        <div class="input-group">
-                            <form action="search">
-                                <input type="text" placeholder="What do you need?" name="usinput">
-                                <button type="button"><input type="submit"></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 text-right col-md-3">
-                    <ul class="nav-right">
-                        <li class="heart-icon">
-                            <a href="#">
-                                <i class="icon_heart_alt"></i>
-                                <span>1</span>
-                            </a>
-                        </li>
-                        <li class="cart-icon">
-                            <a href="#">
-                                <i class="icon_bag_alt"></i>
-                                <span>3</span>
-                            </a>
-                            <div class="cart-hover">
-                                <div class="select-items">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="si-pic"><img src="{% static 'img/select-product-1.jpg' %}" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>Rs.60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="si-pic"><img src="{% static 'img/select-product-2.jpg' %}" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>Rs.60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="select-total">
-                                    <span>total:</span>
-                                    <h5>Rs.120.00</h5>
-                                </div>
-                                <div class="select-button">
-                                    <a href="#" class="primary-btn view-card">VIEW CART</a>
-                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="cart-price">Rs.150.00</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
     <div class="nav-item">
         <div class="container">
-            <!--
-            <div class="nav-depart">
-                <div class="depart-btn">
-                    <i class="ti-menu"></i>
-                    <span>All departments</span>
-                    <ul class="depart-hover">
-                        <li ><a href="#">Women’s Clothing</a></li>
-                        <li><a href="#">Men’s Clothing</a></li>
-                        <li><a href="#">Footwear</a></li>
-                        <li><a href="#">Kid's Clothing</a></li>
-                        <li><a href="#">Brand Fashion</a></li>
-                        <li><a href="#">Accessories/Shoes</a></li>
-                        <li><a href="#">Luxury Brands</a></li>
-                        <li><a href="#">Brand Outdoor Apparel</a></li>
-                    </ul>
-                </div>
-            </div>
-            -->
+            
             <nav class="nav-menu mobile-menu">
                 <ul>
                    <li> <h3 style="color:rgb(69, 223, 223)";>*************************************************************************************</h3></li>
-                    <!--
-                    <li><a href="shop/">Shop</a></li>
-                    <li><a href="#">Collection</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Men's</a></li>
-                            <li><a href="#">Women's</a></li>
-                            <li><a href="#">Kid's</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="blog/">Blog</a></li>
-                    <li><a href="contact/">Contact</a></li>
-                    <li><a href="#">Pages</a>
-                        <ul class="dropdown">
-                            <li><a href="blog-details/">Blog Details</a></li>
-                            <li><a href="shopping-cart/">Shopping Cart</a></li>
-                            <li><a href="check-out/">Checkout</a></li>
-                            <li><a href="faq/">Faq</a></li>
-                            {% if user.is_authenticated %}
-                                <li><a href="accounts/logout">Logout</a></li>
-                            {% else %}
-                                <li><a href="accounts/reg">Register</a></li>
-                                <li><a href="accounts/log">Login</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
-                    -->
+                    
                 </ul>
             </nav>
             <div id="mobile-menu-wrap"></div>
@@ -418,18 +362,7 @@
                     </ul>
                 </div>
             </div>
-            <!--
-            <div class="col-lg-4">
-                <div class="newslatter-item">
-                    <h5>Join Our Newsletter Now</h5>
-                    <p>Get E-mail updates about our latest shop and special offers.</p>
-                    <form action="#" class="subscribe-form">
-                        <input type="text" placeholder="Enter Your Mail">
-                        <button type="button">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            -->
+            
         </div>
     </div>
     <div class="copyright-reserved">
@@ -455,6 +388,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script>
+    document.getElementById("chatLog").innerHTML=localStorage.getItem("key");
     var voiceList;//=document.querySelector('#voiceList');
     var synth = window.speechSynthesis;
     var voices = [];
@@ -536,7 +470,7 @@
             
         }
         recognition.start();
-
+        localStorage.setItem("key",document.getElementById("chatLog").innerHTML);
     }
     
     function PopulateVoices()
@@ -555,7 +489,7 @@
         });
         voiceList = derangedVoice;
     }
-document.getElementById("chatlog")=localStorage.getItem('key');
+
 function talk() {
     var user = document.getElementById("userBox").value;
     var url = '/send?name='+user;
@@ -589,8 +523,9 @@ function talk() {
     };
     req.open("GET", url, true);
     req.send();
+    localStorage.setItem("key",document.getElementById("chatLog").innerHTML);
 } 
-localStorage.setItem("key",getElementById("chatlog").value);
+
 </script>
 <!-- Js Plugins -->
 <script>
@@ -602,6 +537,55 @@ function closeForm() {
 document.getElementById("myForm").style.display = "none";
 }
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script type="text/javascript">
+    // form upload
+    $('#id_ajax_upload_form').submit(function(e){
+        e.preventDefault();
+        $form = $(this)
+        var formData = new FormData(this);
+        $.ajax({
+            url: '/send/',
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                $('.error').remove();
+                console.log(response)
+                if(response.error){
+                    
+                    $.each(response.error, function(name, error){
+                        error = '<small class="text-muted error">' + error + '</small>'
+                        $form.find('[name=' + name + ']').after(error);
+                    })
+                }
+                else{
+                    var x = document.createElement("IMG");
+                    x.setAttribute("src", response.form);
+                    x.setAttribute("width", "130");
+                    x.setAttribute("height", "100");
+                    x.setAttribute("alt", "The Pulpit Rock");
+                    var User="{{user.username}}";
+                    User = User.charAt(0).toUpperCase() + User.substring(1);
+                    User=User.bold()+": ".bold()
+                    document.getElementById('chatLog').innerHTML+=User;
+                    document.getElementById('chatLog').innerHTML+="<br>";
+                    document.getElementById('chatLog').appendChild(x);
+                    document.getElementById('chatLog').innerHTML+="<br>";
+                    document.getElementById('chatLog').innerHTML+="Vision Bot :".bold()+'<a href=" '+response.yu+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";
+                    updateScroll();
+                    //document.body.appendChild(x);
+                    //alert(response.form);
+                    //alert(response.message)
+                    //window.location = ""
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+    // end
+   </script>
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/jquery-ui.min.js' %}"></script>
