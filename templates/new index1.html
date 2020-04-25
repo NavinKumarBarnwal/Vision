@@ -27,6 +27,59 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh'}" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+        .w3-container {
+            margin:10px;
+            margin-top: 10%;
+            padding: 5px 30px;
+            color:cyan;
+            font-size: 20px;
+            border:cyan;
+            padding:0.05em 25px}
+
+        
+        .a{
+            font-size: 15px;
+            color: olivedrab;
+        }
+        .b{
+            color: #00FF00;
+            font-size: 20px;
+        }
+        .c{
+            color:#00FF00;
+            font-size: 19px;
+            padding: 5px;
+            margin: 30px;
+            border: 2px solid #00FF00;
+        }
+        .w3-modal{
+            z-index:3;
+            display:none;
+            padding-top:100px;
+            position:fixed;
+            left:0;
+            top:0;
+            width:100%;
+            height:100%;
+            overflow:auto;
+            background-color:rgba(0, 1, 0, 0.1);
+            
+        }
+        .w3-modal-content{
+            margin:auto;
+            background: black;
+            position:relative;
+            padding:0;
+            outline:0;
+            width:50%;
+            text-align: center;
+            border: 2px solid #00FF00;
+        }
+  
+    </style>
+
 </head>
 
 <body>
@@ -35,8 +88,37 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-  <!--Chatbot-->
-  <div class="back" style="background-color:rgb(69, 223, 223)">
+    <form enctype="multipart/form-data" id="id_ajax_upload_form" method="POST" novalidate="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" />
+     </form>
+    <!--<div class="w3-container">
+        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Upload Resumé</button>
+      
+    <div id="id01" class="w3-modal">
+          <div class="w3-modal-content">
+            <div class="w3-container">
+              <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+              <form action='chat2/' method="post" enctype="multipart/form-data" class="d">
+                {% csrf_token %}
+                <br>
+                <input type="file" name="myfile" accept="image/*" class ="c"><br><br>
+                <button type="submit">Upload</button>
+              </form>
+              
+              <p class="c"><strong class="b">Note:</strong> Only .pdf and .docx formats are acceptable.</p>
+              <p class="a"><a href="{% url 'home' %}">Return to home</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  Chatbot
+    
+    <button onclick="upload1()">Upload</button>
+    <input type="file" formmethod="post" onchange="load(event)" formenctype="multipart/form-data" name="myfile" id="myfil"><br><br>
+    -->
+    <div class="back" style="background-color:rgb(69, 223, 223)">
     <div>
       <button class="open-button" onclick="openForm()" style="background-color: #0309a8;
       color: white;
@@ -88,7 +170,8 @@
       overflow-y:auto;
       overflow-x:hidden;
       height:295px;">
-      <b>Vision Bot: </b>Hi {{user.username}}! I am Vision Bot.<br>
+      <b>Vision Bot: </b>Hi {{user.username}}! I am Vision Bot.
+      <br>
          </div>
          <div class="form-container" style="position: fixed;
       bottom:100px;
@@ -99,7 +182,7 @@
       border-radius:7px;
       background-color:rgb(62,223,223); z-index:150; border-radius:7px">
             <div>   
-
+                
             <input  placeholder="Type msg & press enter" id="userBox" style="float:left; padding: 5px 5px;justify-content:space-between;width:200px; border-radius:5px;" type="text" onkeydown="if (event.keyCode == 13) {talk(); updateScroll()}" >
             <span><i onclick="record()" class="fa fa-microphone" style="background-color: #555;
                 color: white;
@@ -110,7 +193,15 @@
                 position: fixed;
                 right: 60px;
                 z-index:300;border-radius:5px;"></i></span>
-             
+            <!--<form action='upload/' method="post" enctype="multipart/form-data" class="d">
+                {% csrf_token %}
+                <br>-->
+                
+        
+
+
+                
+ 
      <!--<form action="/action_page.php" method="post" class="form-container"-->
         
             </div>                     <!--<label for="msg"><b>Message</b></label>-->
@@ -149,7 +240,9 @@
       border-radius:7px;">
       <b>Vision Bot:</b> Please Login to Conversate.<br></p>
       
-      
+      <script>
+        localStorage.setItem("key",document.getElementById("chatLog").innerHTML);
+      </script>
       </div>
       <i type="button" onclick="closeForm()" class="fa fa-close" style="background-color: #555;
       color: white;
@@ -235,7 +328,7 @@
                                     <i type="submit" class="fa fa-search" style="font-size: 16px;
                                     color: #ffffff;
                                     position: absolute;
-                                    right: -10px;
+                                    right: 0px;
                                     top: -1px;
                                     border: 1px solid rgb(69, 223, 223);
                                     background: rgb(69, 223, 223);
@@ -370,30 +463,30 @@
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="{{product.11.image_url}}" alt="">
+                                <img src="{{product.10.image_url}}" alt="">
                                 <div class="sale">Sale</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="{{product.10.id}}">+ Quick View</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">{{product.11.tag}}</div>
+                                <div class="catagory-name">{{product.10.tag}}</div>
                                 <a href="#">
-                                    <h5>{{product.11.name}}</h5>
+                                    <h5>{{product.10.name}}</h5>
                                 </a>
                                 <div class="product-price">
-                                    Rs.{{product.11.price}}
+                                    Rs.{{product.10.price}}
                                     <span>Rs.499</span>
                                 </div>
                             </div>
                         </div>
                         
-                        {% for i in product|slice:"12:20" %}
+                        {% for i in product|slice:"11:20" %}
                         <div class="product-item">
                             <div class="pi-pic">
                                 <img src="{{i.image_url}}" alt="">
@@ -402,7 +495,7 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="{{i.id}}">+ Quick View</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
@@ -443,29 +536,29 @@
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="{{product.21.image_url}}" alt="">
+                                <img src="{{product.20.image_url}}" alt="">
                                 <div class="sale">Sale</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>                                <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="{{product.20.id}}">+ Quick View</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">{{product.21.tag}}</div>
+                                <div class="catagory-name">{{product.20.tag}}</div>
                                 <a href="#">
-                                    <h5>{{product.21.name}}</h5>
+                                    <h5>{{product.20.name}}</h5>
                                 </a>
                                 <div class="product-price">
-                                    Rs.{{product.21.price}}
+                                    Rs.{{product.20.price}}
                                     <span>Rs.499</span>
                                 </div>
                             </div>
                         </div>
                         
-                        {% for i in product|slice:"22:30" %}
+                        {% for i in product|slice:"21:30" %}
                         <div class="product-item">
                             <div class="pi-pic">
                                 <img src="{{i.image_url}}" alt="">
@@ -474,7 +567,7 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="{{i.id}}">+ Quick View</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
@@ -546,30 +639,30 @@
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="{{product.1.image_url}}" alt="">
+                                <img src="{{product.0.image_url}}" alt="">
                                 <div class="sale">Sale</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="{{product.0.id}}">+ Quick View</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">{{product.1.tag}}</div>
+                                <div class="catagory-name">{{product.0.tag}}</div>
                                 <a href="#">
-                                    <h5>{{product.1.name}}</h5>
+                                    <h5>{{product.0.name}}</h5>
                                 </a>
                                 <div class="product-price">
-                                    Rs.{{product.1.price}}
+                                    Rs.{{product.0.price}}
                                     <span>Rs.999</span>
                                 </div>
                             </div>
                         </div>
                         
-                        {% for i in product|slice:"2:10" %}
+                        {% for i in product|slice:"1:10" %}
                         <div class="product-item">
                             <div class="pi-pic">
                                 <img src="{{i.image_url}}" alt="">
@@ -578,7 +671,7 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="{{i.id}}">+ Quick View</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
@@ -869,14 +962,48 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.write("abcdefghi");
+        </script>
     </footer>
     <!-- Footer Section End -->
-
     <!-- Js Plugins -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
+            localStorage.setItem("key",document.getElementById("chatLog").innerHTML);
+            //document.getElementById("chatLog").innerHTML=localStorage.getItem("key");
+
+            /*function upload1()
+            {
+                var user=document.getElementById('myfil').value;
+                document.getElementById('chatLog').innerHTML+=document.getElementById('myfil').value;
+                var url = '/send?name='+user;
+                var req = new XMLHttpRequest();
+                var t;
+                var User="{{user.username}}";
+                User = User.charAt(0).toUpperCase() + User.substring(1);
+                User=User.bold()+": ".bold()
+                var Visi="Vision Bot: ".bold()
+                if (this.readyState == 4 && this.status == 200) {
+                    t=req.responseText;
+                if (t.charAt(0)=="h" && t.charAt(1)=="t" && t.charAt(2)=="t" && t.charAt(3)=="p") {
+                        //document.getElementById("userBox").value = "";
+                        document.getElementById("chatLog").innerHTML += User+user+"<br>";
+                        //document.write(t);
+                        document.getElementById("chatLog").innerHTML += Visi+'<a href=" '+t+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";
+                        //toSpeak = new SpeechSynthesisUtterance("Click here for Search Query Results/View your Cart");
+                    }
+                    else{
+                        //document.getElementById("userBox").value = "";
+                        document.getElementById("chatLog").innerHTML += User+user+"<br>";
+                        document.getElementById("chatLog").innerHTML += Visi+t+"<br>";
+                        //toSpeak = new SpeechSynthesisUtterance(t);
+                        
+                    }
+            }*/
+            
             var voiceList;//=document.querySelector('#voiceList');
             var synth = window.speechSynthesis;
             var voices = [];
@@ -943,22 +1070,11 @@
                     };
                     req.open("GET", url, true);
                     req.send();
-                            /*
-                    if(user in know)
-                    {
-                        toSpeak = new SpeechSynthesisUtterance(know[user]);
-                        document.getElementById("chatLog").innerHTML += know[user]+"<br>";
-                    }
-                    else
-                    {
-                        toSpeak = new SpeechSynthesisUtterance("I don't understand");
-                        document.getElementById("chatLog").innerHTML += "I don't understand...<br>";
-                    }
-                    */
+                    
                     
                 }
                 recognition.start();
-
+                localStorage.setItem("key",document.getElementById("chatLog").innerHTML);
             }
             
             function PopulateVoices()
@@ -977,7 +1093,7 @@
                 });
                 voiceList = derangedVoice;
             }
-        document.getElementById("chatlog")=localStorage.getItem('key');
+        //document.getElementById("chatlog")=localStorage.getItem('key');
         function talk() {
             var user = document.getElementById("userBox").value;
             var url = '/send?name='+user;
@@ -997,11 +1113,13 @@
                     document.getElementById("chatLog").innerHTML += User+user+"<br>";
                     //document.write(t);
                     document.getElementById("chatLog").innerHTML += Visi+'<a href=" '+t+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";
+                    localStorage.setItem("key",document.getElementById("chatLog").innerHTML);
                 }
                 else{
                     document.getElementById("userBox").value = "";
                     document.getElementById("chatLog").innerHTML += User+user+"<br>";
                     document.getElementById("chatLog").innerHTML += Visi+t+"<br>";
+                    localStorage.setItem("key",document.getElementById("chatLog").innerHTML);
                 }
                 $(document).ready(function(){
                     var $text= $('#chatLog');
@@ -1009,21 +1127,118 @@
                 })
             }
             };
+            
             req.open("GET", url, true);
             req.send();
         } 
-        localStorage.setItem("key",getElementById("chatlog").value);
-    </script>
-    <!-- Js Plugins -->
-    <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+        function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        }
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>
+        function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+    <script>
+        var load = function(event)
+            {
+                //document.write("abcd");
+                var user=document.createElement('IMG');
+                user.src=URL.createObjectURL(event.target.files[0]);
+                //var user=document.getElementById("myfil");
+                //var input = document.getElementById("myfil");
+                //var file = input.value.split("\\");
+                //var user = file[file.length-1];
+                //alert(user);
+                //document.write("abcd");
+                document.getElementById('chatLog').innerHTML+=user;
+                var url = '/send?name='+user;
+                var req = new XMLHttpRequest();
+                var t;
+                var User="{{user.username}}";
+                User = User.charAt(0).toUpperCase() + User.substring(1);
+                User=User.bold()+": ".bold()
+                var Visi="Vision Bot: ".bold()
+                
+                if (this.readyState == 4 && this.status == 200) {
+                    t=req.responseText;
+                alert(user);
+                console.log(t);
+                if (t.charAt(0)=="h" && t.charAt(1)=="t" && t.charAt(2)=="t" && t.charAt(3)=="p") {
+                        //document.getElementById("myfil").value = "";
+                        document.getElementById("chatLog").innerHTML += User;
+                        document.getElementById('chatLog').appendChild(user);
+                        document.getElementById("chatLog").innerHTML += "<br>";
+                        console.log(t);
+                        //document.write(t);
+                        document.getElementById("chatLog").innerHTML += Visi+'<a href=" '+t+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";
+                        //toSpeak = new SpeechSynthesisUtterance("Click here for Search Query Results/View your Cart");
+                    }
+                    else{
+                        //document.getElementById("userBox").value = "";
+                        //document.getElementById("chatLog").innerHTML += User+user+"<br>";
+                        document.getElementById("chatLog").innerHTML += Visi+t+"<br>";
+                        //toSpeak = new SpeechSynthesisUtterance(t);
+                        
+                    }
+            }
+            };
+            /*function addchat()
+            {
+                var Visi="Vision Bot: ".bold();
+                document.getElementById('chatLog').innerHTML+=Visi+'<a href=" '+"{{yu}}"+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";;
+            }*/
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script type="text/javascript">
+    // form upload
+    $('#id_ajax_upload_form').submit(function(e){
+        e.preventDefault();
+        $form = $(this)
+        var formData = new FormData(this);
+        $.ajax({
+            url: '/send/',
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                $('.error').remove();
+                console.log(response)
+                if(response.error){
+                    
+                    $.each(response.error, function(name, error){
+                        error = '<small class="text-muted error">' + error + '</small>'
+                        $form.find('[name=' + name + ']').after(error);
+                    })
+                }
+                else{
+                    var x = document.createElement("IMG");
+                    x.setAttribute("src", response.form);
+                    x.setAttribute("width", "130");
+                    x.setAttribute("height", "100");
+                    x.setAttribute("alt", "The Pulpit Rock");
+                    var User="{{user.username}}";
+                    User = User.charAt(0).toUpperCase() + User.substring(1);
+                    User=User.bold()+": ".bold()
+                    document.getElementById('chatLog').innerHTML+=User;
+                    document.getElementById('chatLog').innerHTML+="<br>";
+                    document.getElementById('chatLog').appendChild(x);
+                    document.getElementById('chatLog').innerHTML+="<br>";
+                    document.getElementById('chatLog').innerHTML+="Vision Bot :".bold()+'<a href=" '+response.yu+' " target="_blank">Click here for Search Query Results/View your Cart</a>'+"<br>";
+                    updateScroll();
+                    //document.body.appendChild(x);
+                    //alert(response.form);
+                    //alert(response.message)
+                    //window.location = ""
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+    // end
+   </script>
+    <!-- Js Plugins -->
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery-ui.min.js' %}"></script>
