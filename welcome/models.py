@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 class Product(models.Model):
@@ -13,3 +14,9 @@ class Product(models.Model):
 class UserProduct(models.Model):
     name=models.CharField(max_length=255)
     pid=models.IntegerField()
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    photo = models.ImageField(upload_to="images")
+    attachment = models.FileField(upload_to="attachments")
+    phone = models.CharField(max_length=10)
