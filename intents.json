@@ -1,36 +1,31 @@
 {"intents": [
         {"tag": "greeting",
-         "patterns": ["Hi", "How are you", "Is anyone there?","anyone there","My friend","Hello Bot","Hi Vision Bot", "Vision Bot","Hello", "Good day", "Whats up", "Can I talk to you?","hey, how's it going?","hello vision","you are my friend","friend","bestie"],
-         "responses": ["Hello!", "Good to see you again!", "Hi there, how can I help?", "Hi, Let's Conversate!", "Hi, My friend"],
+         "patterns": ["Hi", "Hii", "How are you", "Hello Bot","Hi Vision Bot", "Vision Bot","Hello", "Whats up", "Can I talk to you?","hey, how's it going?","hello vision"],
+         "responses": ["Hi! I am ready to make your day good.","Good to see you again!", "Hi there, how can I help?", "Hi, Let's Conversate!"],
          "context_set": ""
         },
         {"tag": "goodbye",
-         "patterns": ["cya","see you", "Got to go now", "See you later","need to leave", "Goodbye", "Bye", "I am Leaving", "Have a Good day"],
-         "responses": ["Sad to see you go.", "Talk to you later", "See you soon!", "Goodbye!", "Felt nice to conversate with you", "Get back soon! Bye"],
+         "patterns": ["cya","see you", "Got to go now", "See you later","need to leave", "Goodbye", "Bye", "Bye Vision", "I am Leaving", "Have a Good day"],
+         "responses": ["Bye, Stay Home Stay Safe."],
          "context_set": ""
         },
-        {"tag": "age",
-         "patterns": ["how old","your age buddy", "how old is Vision","Vision's Age?", "what is your age", "how old are you", "age?"],
-         "responses": [ "Vision is a Ecommerce company which was launched on January, 2020"],
+        {"tag": "explore",
+         "patterns": ["explore","discover", "magnify","view"],
+         "responses": ["ok"],
          "context_set": ""
         },
         {"tag": "name",
-         "patterns": ["what is your name","Introduce yourself","introduction please","i am","myself","this is","here","my name is", "let's be familiar", "what should I call you", "whats your name?","your name please","call you?" ],
+         "patterns": ["what is your name","Introduce yourself","introduction please", "let's be familiar", "what should I call you", "whats your name?","your name please"],
          "responses": ["You can call me Vision Bot.", "I'm Vision Bot!", "I'm Vision Bot! Your coolest friend.", "Vision is my name, Hope you have heard it before."],
          "context_set": ""
         },
-        {"tag": "hours",
-         "patterns": ["when are you guys open","when can i reach you?", "what are your hours", "hours of operation"],
-         "responses": ["We are open 7am-4pm Monday-Friday!"],
-         "context_set": ""
-        },
         {"tag": "help",
-         "patterns": ["Products","buy","buy something","help me","shop","trending","latest","search products","discover products"],
+         "patterns": ["I want something","What products do you offer?","help me","What are the products"],
          "responses": ["Vision Offers Products like:<br>1. Mens Wear<br>2. Womens Wear<br>3. Kids Wear<br>What would you like to have? "],
          "context_set": ""
         },
         {"tag": "order",
-            "patterns": ["order", "placement of order", "place order", "order products"],
+            "patterns": ["buy","buy now","order now", "placement of order", "place order","check-out", "proceed to checkout","I want to checkout"],
             "responses": ["Okay, Check Your Checkout Page."],
             "context_set": ""
         },
@@ -40,17 +35,20 @@
             "context_set": ""
         },
         {"tag": "showcart",
-            "patterns": ["cart", "my current products", "my saved products", "my products","show my cart","show my products","products added by me"],
+            "patterns": ["cart", "my current products", "my saved products", "my products","my cart","products added by me"],
             "responses": ["Your Cart is HERE."],
             "context_set": ""
         },
         {"tag": "product",
-            "patterns": ["wear","red", "green","black","violet","yellow","pink","blue","navy blue","denim","orange","grey","maroon","dark green","brown", "light", "crimson", "white","pale","reddish","skin","tight","indigo","tshirt","jeans","shirt","pants","trousers","shorts","jackets","shrug","sweaters","dupatta","top","sweatshirts","under","socks","hat","cap","woolen","cotton","silk","cloth","neck","sleeves","collar","kurti","top","suit","legins","salwar","size","small","long","large","medium","extra large","year","men","women","kids","boy","girl","lady","ladies","gents","baby","male","female","menwear","menswear","womenswear","kidwear","boywear","girlwear","womenwear","ladywear","girlswear","boyswear"],
+            "patterns": ["show","show me","wear","red","black","yellow","pink","blue","navy blue","denim","orange","grey","maroon","green","brown", "white","tshirt","jeans","shirt","pants","trousers","shorts","jackets","shrug","sweatshirts","cloth","kurti","top","suit","men","women","kids","boy","girl","lady","ladies","gents","baby","male","female","menwear","menswear","womenswear","kidwear","boywear","girlwear","womenwear","ladywear","girlswear","boyswear"],
             "responses": ["Okay, We are searching for your products."],
             "context_set": ""
+        },
+        {"tag": "random",
+            "patterns": ["shoaskae","wakad","akslaed","blakak","yalkalow","pamak","bassue","naaklue","dakksnim","oakjae","asdkkaey","majkaon","grahhja","bakakn", "aklaste","tlksakt","xldjnns","saouruet","adkdts","aklaas","adjkarts","jasdackets","shajag","sweaaaklrts","caklas","audi","tairufi","audfit","asdken","woadka","ksala","sadkoy","gckdl","lsadkly","ldslkaes","gasdkjs","adkljla","makdlae","asdale","masklr","maskar","wajkaar","kiytrhdr","basklkar","gadkljr","wasjalr","lasdklear","gjklsasdjr","bysadsajk","cdme","wvsaear","reddedsd","blaassck","uvcgfhow","sdahds","navjkble","acdnm","mirange","prey","aroon","reen","ropn", "wlmkjite","iuytrt","jlkons","shyttyt","pljgfts","mnkhusers","ouytorts","jackashas","ajsdhsia","ioubhbaja","pouyith","kuoiuyi","aoapskjs","znskhnd","mrewtz","wasdfjk","sajalks","bsaky","lopaegrl","lijuyady","lakjldies","geuytnts","bakjhby","malemalm","filmle","mkhdksr","wzhjwear","idwr","bywea","omwer","ldywr","gilsar","yswear"],
+            "responses": ["Please Enter Relevant Keywords."],
+            "context_set": ""
         }
-        
-        
    ]
 }
 
