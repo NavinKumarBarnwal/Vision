@@ -73,13 +73,13 @@ with open("intents.json") as file:
     data = json.load(file)
 
 with open("data.pickle", "rb") as f:
-        words, labels, training, output = pickle.load(f)
+    words, labels, training, output = pickle.load(f)
 
 with open("intents1.json") as file:
     data1 = json.load(file)
 
 with open("data1.pickle", "rb") as f:
-        words1, labels1, training1, output1 = pickle.load(f)
+    words1, labels1, training1, output1 = pickle.load(f)
 
 tensorflow.reset_default_graph()
 
@@ -186,6 +186,7 @@ def a30(request):
     return render(request,'30.html')
 
 def chat1(request):
+    #print(request.method)
     if request.method == 'POST':
         fe = FeatureExtractor()
         features=[]
@@ -209,7 +210,7 @@ def chat1(request):
             y=""
             for i in ids:
                 y+=(str(i)+" ")
-            yu="http://vision.com/search/?usinput="+"+".join(y.split())
+            yu="http://127.0.0.1:8000/search/?usinput="+"+".join(y.split())
             #print(form)
             #data=request.POST.copy()
             #ph=data.get('photo')
@@ -217,6 +218,7 @@ def chat1(request):
             #dics={'error': False, 'message': 'Uploaded Successfully','form':form}
             #return HttpResponse(json.dumps(data1))
             return JsonResponse({'error': False, 'message': 'Uploaded Successfully','form':uploaded_file_url,'yu':yu})
+
         else:
             return JsonResponse({'error': True, 'errors': form.errors})
     else:
@@ -235,21 +237,19 @@ def chat1(request):
             yu=random.choice(responses)
                 
             if len(tagp)>=2 and tagp[-2]=="help" and tag=="product":
-                yu="http://vision.com/search/?usinput="+"+".join(ui.split())
+                yu="http://127.0.0.1:8000/search/?usinput="+"+".join(ui.split())
 
             elif tag=="product":
-                yu="http://vision.com/search/?usinput="+"+".join(ui.split())      
+                yu="http://127.0.0.1:8000/search/?usinput="+"+".join(ui.split())      
 
             elif tag=="showcart":
-                yu="http://vision.com/shopping-cart/"
+                yu="http://127.0.0.1:8000/shopping-cart/"
 
-            elif tag=="checkout":
-                yu="http://vision.com/check-out/"
             elif tag=="order":
-                yu="http://vision.com/check-out/"
+                yu="http://127.0.0.1:8000/check-out/"
             elif tag=="explore":
                 x=ui.split()[-1]
-                yu="http://vision.com/"+x+"/"
+                yu="http://127.0.0.1:8000/"+x+"/"
             else:
                 pass
             
@@ -266,29 +266,12 @@ def chat1(request):
                     if c==0:
                         y=UserProduct.objects.create(name=name,pid=int(i))
                         y.save()    
-                yu="http://vision.com/shopping-cart/"
+                yu="http://127.0.0.1:8000/shopping-cart/"
             else:
                 yu="Please Enter Relevant Product IDs."    
-        elif len(tagp)>=2 and tagp[-1]=="explore":
-            k=prev[-2]
-            k=(k.split()[-1])
-            x=ui.split()
-            up=UserProduct.objects.all()
-            
-            if ("".join(k)).isdigit():
-                c=0
-                for j in up:
-                    if int(k)==j.pid:
-                        c+=1
-                    if c==0:
-                        y=UserProduct.objects.create(name=name,pid=int(i))
-                        y.save()    
-                yu="http://vision.com/shopping-cart.html/"
-            else:
-                yu="Please Enter Relevant Product IDs."    
-            
         else:
             yu="Please Enter Relevant Keywords."    
+            
     return HttpResponse(yu)   
       
 def home(request):
